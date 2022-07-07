@@ -1,0 +1,11 @@
+import React from "react";
+
+export default props => (
+
+    <footer className="main-footer">
+        <strong>
+            Copyright &copy; 2022
+            <a href="http://brenooliveira.com.br" target='_blank'> Breno </a> 
+        </strong> 
+    </footer>
+)

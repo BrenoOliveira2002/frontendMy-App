@@ -1,8 +1,20 @@
-import React from 'react'
+import React, {Component} from 'react'
 
-export default props => {
+import ContentHeader from '../common/template/contentHeader'    
+import Content from '../common/template/content'
 
-    <div>
-        <h1>Dashboard</h1>
-    </div>
+class Dashboard extends Component {
+    render() {
+
+        return(
+            <div>
+                <ContentHeader title="Dashboard" small="Versao 1.0"></ContentHeader>
+                <Content>
+                    Dashboard
+                </Content>
+            </div>
+        )
+    }
 }
+
+export default Dashboard

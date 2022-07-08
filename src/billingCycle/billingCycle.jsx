@@ -3,8 +3,9 @@ import React, { Component} from "react";
 import ContentHeader from "../common/template/contentHeader";
 import Content from "../common/template/content";
 import Tabs from "../common/tab/tabs"
-import TabsHeader from "../common/tab/tabsHeader";
+import TabHeader from "../common/tab/tabsHeader";
 import TabsContent from '../common/tab/tabsContent'
+import TabsHeader from "../common/tab/tabHeader";
 
 class BillingCycle extends Component {
 
@@ -15,9 +16,14 @@ class BillingCycle extends Component {
             <ContentHeader title=" Ciclos de Pagametos" small='Cadastro' />
             <Content> 
                <Tabs>
-                <TabsHeader></TabsHeader>
+                <TabsHeader>
+                    <TabHeader label='Listar' icon='bars' target='tabList'></TabHeader>
+                    <TabHeader label='Incluir' icon='plus' target='tabCreate'></TabHeader>
+                    <TabHeader label='Alterar' icon='pencil' target='tabUpdate'></TabHeader>
+                    <TabHeader label='Excluir' icon='trash-o' target='tabDelete'></TabHeader>
+                </TabsHeader>
                 <TabsContent></TabsContent>
-               </Tabs>
+               </Tabs> 
 
             </Content>
 

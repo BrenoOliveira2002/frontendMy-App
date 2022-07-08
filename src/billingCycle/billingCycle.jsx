@@ -1,4 +1,4 @@
-import React, { Component} from "react";
+import React, { Component } from "react";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -11,6 +11,7 @@ import TabsContent from '../common/tab/tabsContent'
 import TabsHeader from "../common/tab/tabHeader";
 import TabContent from "../common/tab/TabContent";
 import { selectTab, showTabs } from '../common/tab/tabActions'
+import { create } from './billingCycleActions'
 
 import List from './billingCycleList'
 import Form from './billingCycleForm'
@@ -25,37 +26,37 @@ class BillingCycle extends Component {
 
     render() {
 
-        return(
-        <div>
-            <ContentHeader title=" Ciclos de Pagametos" small='Cadastro' />
-            <Content> 
-               <Tabs>
-                <TabsHeader>
-                    <TabHeader label='Listar' icon='bars' target='tabList'></TabHeader>
-                    <TabHeader label='Incluir' icon='plus' target='tabCreate'></TabHeader>
-                    <TabHeader label='Alterar' icon='pencil' target='tabUpdate'></TabHeader>
-                    <TabHeader label='Excluir' icon='trash-o' target='tabDelete'></TabHeader>
-                </TabsHeader>
-                <TabsContent>
-                    <TabContent id='tabList'>
-                        <List></List>
-                    </TabContent>
-                    <TabContent id='tabCreate'> 
-                    <Form></Form>
-                    </TabContent>
-                    <TabContent id='tabUpdate'>
+        return (
+            <div>
+                <ContentHeader title=" Ciclos de Pagametos" small='Cadastro' />
+                <Content>
+                    <Tabs>
+                        <TabsHeader>
+                            <TabHeader label='Listar' icon='bars' target='tabList'></TabHeader>
+                            <TabHeader label='Incluir' icon='plus' target='tabCreate'></TabHeader>
+                            <TabHeader label='Alterar' icon='pencil' target='tabUpdate'></TabHeader>
+                            <TabHeader label='Excluir' icon='trash-o' target='tabDelete'></TabHeader>
+                        </TabsHeader>
+                        <TabsContent>
+                            <TabContent id='tabList'>
+                                <List></List>
+                            </TabContent>
+                            <TabContent id='tabCreate'>
+                                <Form onSubmit={this.props.create}></Form>
+                            </TabContent>
+                            <TabContent id='tabUpdate'>
 
-                    </TabContent>
-                    <TabContent id='tabDelete'><h1> Excluir</h1></TabContent>
-                </TabsContent>
-               </Tabs> 
+                            </TabContent>
+                            <TabContent id='tabDelete'><h1> Excluir</h1></TabContent>
+                        </TabsContent>
+                    </Tabs>
 
-            </Content>
+                </Content>
 
-        </div>
+            </div>
         )
     }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({selectTab, showTabs}, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ selectTab, showTabs, create }, dispatch)
 export default connect(null, mapDispatchToProps)(BillingCycle)

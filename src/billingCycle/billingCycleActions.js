@@ -5,6 +5,8 @@ import { reset as resetFrom, initialize } from 'redux-form'
 import { showTabs, selectTab } from '../common/tab/tabActions'
 
 const BASE_URL = 'http://localhost:3003/api'
+const INITIAL_VALUES  = {}
+
 
 
 export function getList() {
@@ -23,12 +25,7 @@ export function create(values) {
         .then(resp=> {
  
          toastr.success('Sucesso', 'Operacao Realizada com sucesso.')
-         dispatch([
-            resetForm('billingCycleForm'),
-            getList(), 
-            selectTab('tabList'),
-            showTabs('tabList', 'tabCreate')
-         ])
+         dispatch(init())
         })
         .catch(e => {
          e.response.data.errors.forEach(error => toastr.error('Erro', error))
@@ -44,5 +41,15 @@ export function showUpdate(billingCycle) {
         showTabs('tabUpdate'), 
         selectTab('tabUpdate'),
         initialize('billingCycleForm', billingCycle) 
+    ]
+}
+
+export function init() {
+
+    return [
+        showTab('tabList', 'tabCreate'),
+        selectTab('tabList'),
+        getList(),
+        initialize('billingCycleForm', INITIAL_VALUES)
     ]
 }

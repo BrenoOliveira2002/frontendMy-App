@@ -28,6 +28,11 @@ export function update(values) {
     return submit(values, 'put')    
 }
 
+export function remove(values) {
+
+    return submit(values, 'delete')
+}
+
 function submit(values, method) {
     return dispatch => {
         const id = values._id ? value._id: ''
@@ -55,11 +60,11 @@ export function showUpdate(billingCycle) {
         initialize('billingCycleForm', billingCycle)
     ]
 }
-export function showUpdate(billingCycle) {
+export function showDelete(billingCycle) {
 
     return [
-        showTabs('tabUpdate'),
-        selectTab('tabUpdate'),
+        showTabs('tabDelete'),
+        selectTab('tabDelete'),
         initialize('billingCycleForm', billingCycle)
     ]
 }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { reduxForm, Field } from 'redux-form'
+import labelAndInput from '../common/form/labelAndInput'
+
 
 
 
@@ -13,9 +15,13 @@ class BillingCycleForm extends Component {
             <form role='form' onSubmit={handleSubmit}>
                 <div className="box-body">
 
-                    <Field name='name' component='input'/>
-                    <Field month='month' component='input' />
-                    <Field year='year' component ='input' />
+                    <Field name='name' component={labelAndInput} 
+                    label='Nome' cols= '12 4' placeholder='Informe o Nome'/>
+                    <Field month='month' component={labelAndInput} type='number'
+                    label='Mes' cols='12 4' placeholder='Informe o mes' />
+
+                    <Field year='year' component ={labelAndInput} type='number'
+                    label='Ano' cols='12 4' placeholder='Informe o ano' />
 
                 </div>
                 <div className='box-footer'>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { reduxForm, Field , formValueSelector} from 'redux-form'
+import { reduxForm, Field, formValueSelector } from 'redux-form'
 
 import { init } from './billingCycleActions'
 import labelAndInput from '../common/form/labelAndInput'
@@ -11,7 +11,7 @@ class BillingCycleForm extends Component {
 
     render() {
 
-        const { handleSubmit, readOnly } = this.props
+        const { handleSubmit, readOnly, credits, debts } = this.props
         console.log(handleSubmit)
         return (
             <form role='form' onSubmit={handleSubmit}>
@@ -25,15 +25,18 @@ class BillingCycleForm extends Component {
                     <Field year='year' component={labelAndInput} type='number' readOnly={readOnly}
                         label='Ano' cols='12 4' placeholder='Informe o ano' />
 
-                        <ItemList cols='12 6' list={credits} readOnly={readOnly}
+                    <ItemList cols='12 6' list={credits} readOnly={readOnly}
                         field='credits' legend='Creditos' />
+
+                    <ItemList cols='12 6' list={debts} readOnly={readOnly}
+                        field='debts' legend='Debitos' showStatus={true} />
                 </div>
                 <div className='box-footer'>
                     <button type='submit' className={`btn btn-${this.props.submitClass}`}>
                         {this.props.submitLabel}
                     </button>
                     <button type='button' className='btb btn-default'
-                       onClick={this.props.init}>Cancelar</button>
+                        onClick={this.props.init}>Cancelar</button>
                 </div>
 
             </form>
@@ -44,6 +47,9 @@ class BillingCycleForm extends Component {
 
 BillingCycleForm = reduxForm({ form: 'billingCycleForm', destroyOnUnmount: false })(BillingCycleForm)
 const selector = formValueSelector('billingCycleForm')
-const mapStateToProps = state => ({credits: selector(state, 'credits')})
-const mapDispatchToProps = dispatch => bindActionCreators({init}, dispatch)
+const mapStateToProps = state => ({
+    credits: selector(state, 'credits'),
+    debts: selector(state, 'debts')
+})
+const mapDispatchToProps = dispatch => bindActionCreators({ init }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(BillingCycleForm)
